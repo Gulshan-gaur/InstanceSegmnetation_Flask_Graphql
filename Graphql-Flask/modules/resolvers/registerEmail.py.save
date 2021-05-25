@@ -1,0 +1,5 @@
+@mutation.field("create_person")
+def resolve_create_person(_, info, name, age, last_name):
+    """Creates a new person in the database."""
+    user = User.create(name, last_name, age)
+    return person
