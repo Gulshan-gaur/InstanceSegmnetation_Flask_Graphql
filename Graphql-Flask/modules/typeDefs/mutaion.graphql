@@ -1,3 +1,4 @@
 type Mutation {
-        create_user(firstname: String!, email:String!, age: Int!): User!
+        create_user(firstname: String!, email:String!, age: Int!): AuthField!
 }
+

@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+#from config import Devconfig
+from flask_jwt_extended import JWTManager
 from ariadne import graphql_sync
 from ariadne.constants import PLAYGROUND_HTML
 from database import connection
@@ -13,14 +15,18 @@ db = connect_db.db
 context_app = {
     'mongoClient': db,
 }
+app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
+jwt = JWTManager(app)
+app.config['JWT_BLACKLIST_ENABLED'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = True
+'''app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
-#query = ObjectType("Query")
-#query.set_field("hello", resolve_hello)
-#Graphql Schema 
-#type_defs = load_schema_from_path("modules/schema.graphql")
-schema = schema#make_executable_schema(
-    #type_defs, query, snake_case_fallback_resolvers
-#)
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    jti = decrypted_token['jti']
+    return models.RevokedTokenModel.is_jti_blacklisted(jti)'''
+#app.config = Devconfig.JWT_SECRET_KEY
+schema = schema
 # Create home route
 
 @app.route("/")

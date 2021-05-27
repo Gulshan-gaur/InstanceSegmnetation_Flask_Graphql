@@ -2,3 +2,8 @@ type Query {
   hello(name: String!): String
 }
 
+type AuthField{
+    access_token : String!,
+    refresh_token : String!
+}
+

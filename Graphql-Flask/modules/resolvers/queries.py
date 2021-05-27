@@ -1,7 +1,6 @@
 from ariadne import QueryType, MutationType
+from flask_jwt_extended import jwt_required
 
-query = QueryType()
-
-@query.field("hello")
+@jwt_required()
 def resolve_hello(root,info,name):
     return f'Hello {name}!'
