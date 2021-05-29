@@ -1,9 +1,23 @@
 type Query {
   hello(name: String!): String
+  access_token(refresh_token:String):RefreshField!
+  refresh_token(refresh_token:String):RefreshToken!
 }
 
 type AuthField{
     access_token : String!,
     refresh_token : String!
 }
+
+type RefreshField{
+    access_token:String!,
+    message : String!
+}
+
+type RefreshToken{
+    access_token:String!,
+    refresh_token:String!,
+    message : String!
+}
+
 

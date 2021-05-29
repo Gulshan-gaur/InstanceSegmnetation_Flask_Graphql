@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from datetime import timedelta
 #from config import Devconfig
 from flask_jwt_extended import JWTManager
 from ariadne import graphql_sync
@@ -16,9 +17,11 @@ context_app = {
     'mongoClient': db,
 }
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
-jwt = JWTManager(app)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=1)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(minutes=2)
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
+jwt =JWTManager(app)
 '''app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
 @jwt.token_in_blacklist_loader

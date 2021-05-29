@@ -6,9 +6,9 @@ from graphql import GraphQLError
 from models.user import User
 from ariadne import MutationType
 
-mutation  =  MutationType()
+#mutation  =  MutationType()
 
-@mutation.field("create_user")
+#@mutation.field("create_user")
 def resolve_create_user(root, info, firstname,email, age):
 
     """Creates a user in the database."""

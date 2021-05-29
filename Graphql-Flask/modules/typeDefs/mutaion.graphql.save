@@ -1,9 +1,0 @@
-type Mutation {
-        create_user(firstname: String!, email:String!, age: Int!): User!
-}
-
-type AuthToken{
-        access_token : String!,
-        refresh_token : String!
-
-}
