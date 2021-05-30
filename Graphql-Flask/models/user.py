@@ -12,7 +12,4 @@ class User():
 
     def  find_by_email(userEmail):
         old_user = db.users.find_one(userEmail)
-        if old_user:
-             return True
-        else:
-             return False
+        return old_user

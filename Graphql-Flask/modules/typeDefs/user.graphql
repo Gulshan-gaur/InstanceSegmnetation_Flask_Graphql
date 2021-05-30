@@ -2,5 +2,8 @@ type User {
   id: ID
   firstname: String
   email: String
+  password:String
   age: Int
 }
+
+

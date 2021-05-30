@@ -1,4 +1,4 @@
-from ariadne import load_schema_from_path, make_executable_schema, snake_case_fallback_resolvers
+from ariadne import load_schema_from_path, make_executable_schema, snake_case_fallback_resolvers,upload_scalar
 from modules.resolvers import query,mutation
 
 
