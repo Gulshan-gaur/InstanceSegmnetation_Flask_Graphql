@@ -4,7 +4,7 @@ from modules.resolvers import query,mutation
 
 type_defs = load_schema_from_path("./modules/typeDefs")
 schema = make_executable_schema(
-     type_defs, query, mutation, snake_case_fallback_resolvers
+     type_defs, query, mutation, [upload_scalar], snake_case_fallback_resolvers
 )
     
 

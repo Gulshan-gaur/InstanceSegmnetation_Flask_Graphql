@@ -4,7 +4,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 #jwt_refresh_token_required, get_raw_jwt
 from graphql import GraphQLError
 from models.user import User
-from ariadne import MutationType
+#from ariadne import MutationType
 import bcrypt
 
 #mutation  =  MutationType()

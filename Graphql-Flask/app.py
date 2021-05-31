@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 from datetime import timedelta
 #from config import Devconfig
+import json
 from flask_jwt_extended import JWTManager
 from ariadne import graphql_sync
 from ariadne.constants import PLAYGROUND_HTML
+from ariadne import combine_multipart_data
 from database import connection
 from resolver import schema
 
@@ -13,9 +15,7 @@ app = Flask(__name__)
 # database connection
 connect_db = connection.Database()
 db = connect_db.db
-context_app = {
-    'mongoClient': db,
-}
+
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=1)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(minutes=2)
@@ -43,14 +43,21 @@ def graphql_playground():
 
 @app.route("/graphql", methods=["POST"])
 def graphql_server():
-    data = request.get_json()
+    if request.content_type.startswith("multipart/form-data"):
+        data = combine_multipart_data(
+            json.loads(request.form.get("operations")),
+            json.loads(request.form.get("map")),
+            dict(request.files)
+        )
+    else:
+        data = request.get_json()
 
     success, result = graphql_sync(
         schema,
         data,
-        context_value=context_app,
+        context_value=request,
         debug=app.debug
-    )
+      )
 
     status_code = 200 if success else 400
     return jsonify(result), status_code

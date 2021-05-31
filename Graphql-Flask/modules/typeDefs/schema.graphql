@@ -19,5 +19,14 @@ type RefreshToken{
     refresh_token:String!,
     message : String!
 }
+scalar Upload
+
+type test{
+   image:Upload
+}
+
+type Image{
+    filename: String! 
+}
 
 
