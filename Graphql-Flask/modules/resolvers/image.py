@@ -1,14 +1,21 @@
 import os
+import sys
+sys.path.insert(0,'../..')
 from graphql import GraphQLError
 from models.user import User
+from flask_jwt_extended import  jwt_required
+
 
 def resolve_upload_image(root,info,image):
-    filename= info.context
-    print(filename)
-    photo = filename
-    fill = os.path.join(photo,'../image')
+    print(info)
+    fileitem= info.variable_values['image']
+    #print(filename.filename)
+    image = fileitem.filename
+    filepath = os.path.join('image',image)
+    fileitem.save(filepath)
     payload = {
-      "filename":fill,
+      "filename":filepath,
+      "message":"file uploaded"
     }
     return payload
     

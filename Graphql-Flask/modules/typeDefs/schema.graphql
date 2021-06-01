@@ -26,7 +26,8 @@ type test{
 }
 
 type Image{
-    filename: String! 
+    filename: String!
+    message:String! 
 }
 
 

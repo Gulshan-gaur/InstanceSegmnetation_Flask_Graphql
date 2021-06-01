@@ -14,19 +14,22 @@ def resolve_create_user(root, info, firstname,email, password,age):
 
     """Creates a user in the database."""
     old_user = User.find_by_email({"email":email})
-    if old_user["email"]==email:   
-       raise GraphQLError(message="user already exist",extensions={"code":404})
-    else:
-       password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-       user_context = {"firstname":firstname,"email":email,"password":password,"age":age}
-       try:
-           newUser = User.create(user_context)
-           access_token = create_access_token(identity = user_context['email'])
-           refresh_token = create_refresh_token(identity = user_context['email'])
-           payload = {
+    if not old_user:
+        password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+        user_context = {"firstname":firstname,"email":email,"password":password,"age":age}
+        try:
+            newUser = User.create(user_context)
+            access_token = create_access_token(identity = user_context['email'])
+            refresh_token = create_refresh_token(identity = user_context['email'])
+            payload = {
                'access_token':access_token,
                'refresh_token':refresh_token
-           }
-           return payload
-       except:
-           raise GraphQLError("somthing went wrong!")
+            }
+            return payload
+        except:
+            raise GraphQLError("somthing went wrong!")
+
+    else:
+        if old_user["email"]==email:   
+           raise GraphQLError(message="user already exist",extensions={"code":404})
+       
