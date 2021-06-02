@@ -16,9 +16,9 @@ app = Flask(__name__)
 connect_db = connection.Database()
 db = connect_db.db
 
-app.config['JWT_SECRET_KEY'] = 'Graphql_Flask_Mongodb'
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=1)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(minutes=2)
+app.config['JWT_SECRET_KEY'] = 'jwt-token-string'
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=5)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(minutes=20)
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
 jwt =JWTManager(app)
