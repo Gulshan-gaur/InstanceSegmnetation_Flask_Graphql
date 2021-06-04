@@ -17,8 +17,8 @@ connect_db = connection.Database()
 db = connect_db.db
 
 app.config['JWT_SECRET_KEY'] = 'jwt-token-string'
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=5)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(minutes=20)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=25)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(minutes=200)
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
 jwt =JWTManager(app)

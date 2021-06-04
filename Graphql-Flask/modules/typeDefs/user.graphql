@@ -1,9 +1,34 @@
 type User {
-  id: ID
   firstname: String
   email: String
-  password:String
   age: Int
 }
 
+type Own {
+    id: ID
+    firstname: String
+    email: String
+    age: Int
+}
+
+type AuthField {
+    access_token : String!,
+    refresh_token : String!
+}
+
+type RefreshField{
+    access_token:String!,
+    message : String!
+}
+
+type RefreshToken{
+    access_token:String!,
+    refresh_token:String!,
+    message : String!
+}
+
+type Predict{
+    prediction:String!
+    message:String
+}
 

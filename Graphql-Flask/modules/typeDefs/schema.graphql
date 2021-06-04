@@ -2,28 +2,15 @@ type Query {
   hello(name: String!): String
   access_token(refresh_token:String):RefreshField!
   refresh_token(refresh_token:String):RefreshToken!
+  user_data(email:String):User!
+  own_data(user:String!):Own!
 }
 
-type AuthField{
-    access_token : String!,
-    refresh_token : String!
-}
 
-type RefreshField{
-    access_token:String!,
-    message : String!
-}
-
-type RefreshToken{
-    access_token:String!,
-    refresh_token:String!,
-    message : String!
-}
 scalar Upload
 
-type test{
-   image:Upload
-}
+scalar WineQuality
+
 
 type Image{
     filename: String!

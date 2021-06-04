@@ -1,0 +1,12 @@
+type WineQuality{
+    volatile_acidity:Float!
+    citric_acid : Float!
+    residualsugar:Float!
+    chlorides:Float!
+    free_sulfur_dioxide:Float!
+    total_sulfur_dioxide:Float!
+    density:Float!
+    pH:Float!
+    sulphates:Float!
+    alcohol:Float!
+}
