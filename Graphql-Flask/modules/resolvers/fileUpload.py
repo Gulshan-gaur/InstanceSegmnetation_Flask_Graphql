@@ -9,9 +9,10 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 def resolve_upload_image(root,info,image):
     fileitem= info.variable_values['image']
     identity= get_jwt_identity() # This variable has email id that can verify with database value
-    print(identity)
     #print(filename.filename)
     image = fileitem.filename
+    image_context = {"email":identity,"image":image}
+    image_upload = User.image_upload(image_context)
     filepath = os.path.join('image',image)
     fileitem.save(filepath)
     payload = {

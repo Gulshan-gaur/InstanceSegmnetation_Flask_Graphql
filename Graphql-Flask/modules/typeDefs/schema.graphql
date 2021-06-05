@@ -14,7 +14,11 @@ scalar WineQuality
 
 type Image{
     filename: String!
-    message:String! 
+    message:String 
+}
+
+type Images{
+    images: [Image]
 }
 
 

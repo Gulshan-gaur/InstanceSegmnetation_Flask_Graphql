@@ -2,7 +2,7 @@ from ariadne import QueryType, MutationType
 from modules.resolvers.registerEmail import resolve_create_user
 from modules.resolvers.loginEmail import resolve_login_user
 from modules.resolvers.queries import resolve_hello, resolve_user_data,resolve_own_data
-from modules.resolvers.image import resolve_upload_image
+from modules.resolvers.fileUpload import resolve_upload_image
 from modules.resolvers.refresh_access_token import resolve_access_token,resolve_refresh_token
 from modules.resolvers.wine_test import resolve_wine_quality
 
