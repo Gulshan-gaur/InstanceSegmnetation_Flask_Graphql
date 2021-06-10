@@ -32,3 +32,11 @@ type Predict{
     message:String
 }
 
+
+input AuthInput {
+  accessToken: String!
+}
+
+type Authpayload{
+  user:AuthField!
+}

@@ -4,6 +4,7 @@ type Query {
   refresh_token(refresh_token:String):RefreshToken!
   user_data(email:String):User!
   own_data(user:String!):Own!
+  download(user:String):Image!
 }
 
 
@@ -14,11 +15,10 @@ scalar WineQuality
 
 type Image{
     filename: String!
+    url : String!
     message:String 
 }
 
-type Images{
-    images: [Image]
-}
+
 
 

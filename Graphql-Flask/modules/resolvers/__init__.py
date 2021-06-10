@@ -5,6 +5,7 @@ from modules.resolvers.queries import resolve_hello, resolve_user_data,resolve_o
 from modules.resolvers.fileUpload import resolve_upload_image
 from modules.resolvers.refresh_access_token import resolve_access_token,resolve_refresh_token
 from modules.resolvers.wine_test import resolve_wine_quality
+from modules.resolvers.fileDownload import resolve_file_download
 
 #Query 
 query = QueryType()
@@ -13,6 +14,8 @@ query.set_field("access_token", resolve_access_token)
 query.set_field("refresh_token",resolve_refresh_token)
 query.set_field("user_data",resolve_user_data)
 query.set_field("own_data",resolve_own_data)
+query.set_field("own_data",resolve_own_data)
+query.set_field("download",resolve_file_download)
 
 #Mutation
 mutation = MutationType()
