@@ -14,7 +14,9 @@ def resolve_file_download(root,info,user):
 		raise GraphQLError(message="Something Went Wrong")
 	else:
 	    image = oldUser['images'][0]
-	    filepath = os.path.join('image',image)    
+	    filepath = os.path.join('image',image)
+	#obj = open(filepath,'rb')
+	#print(obj.read())        
 	payload = {
 	    "filename":image,
 	    "url":filepath,

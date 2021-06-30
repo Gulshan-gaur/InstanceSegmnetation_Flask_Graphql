@@ -1,20 +1,21 @@
 from flask import Flask, request, jsonify
 from datetime import timedelta
 #from config import Devconfig
+from modules.resolvers.download_url import download_file
 import json
 from flask_jwt_extended import JWTManager
 from ariadne import graphql_sync
 from ariadne.constants import PLAYGROUND_HTML
 from ariadne import combine_multipart_data
-from database import connection
+from database.connection import Database
 from resolver import schema
 
 # initialise flask object
 app = Flask(__name__)
 
 # database connection
-connect_db = connection.Database()
-db = connect_db.db
+connect_db = Database()
+#db = connect_db.db
 
 app.config['JWT_SECRET_KEY'] = 'jwt-token-string'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=25)
@@ -30,12 +31,16 @@ def check_if_token_in_blacklist(decrypted_token):
     return models.RevokedTokenModel.is_jti_blacklisted(jti)'''
 #app.config = Devconfig.JWT_SECRET_KEY
 schema = schema
+
 # Create home route
 
 @app.route("/")
 def home():
-   # todos = db.user.find()
-    return "Hello world " 
+    return " Hello Flask " 
+
+@app.route("/download", methods=["GET"])
+def file_download():
+    return download_file()    
 
 @app.route("/graphql", methods=["GET"])
 def graphql_playground():
@@ -43,6 +48,7 @@ def graphql_playground():
 
 @app.route("/graphql", methods=["POST"])
 def graphql_server():
+    # For File uploading multipart/form-data
     if request.content_type.startswith("multipart/form-data"):
         data = combine_multipart_data(
             json.loads(request.form.get("operations")),

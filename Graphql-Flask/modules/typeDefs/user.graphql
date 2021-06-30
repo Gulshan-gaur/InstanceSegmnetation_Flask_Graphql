@@ -40,3 +40,7 @@ input AuthInput {
 type Authpayload{
   user:AuthField!
 }
+
+type Facebook{
+    name:String!
+}

@@ -3,7 +3,7 @@ from graphql import GraphQLError
 #from bson.objectid import ObjectId
 from models.user import User
 
-@jwt_required()
+#@jwt_required()
 def resolve_hello(root,info,name):
     return f'Hello {name}!'
 

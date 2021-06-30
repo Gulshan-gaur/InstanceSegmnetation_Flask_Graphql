@@ -6,6 +6,8 @@ from modules.resolvers.fileUpload import resolve_upload_image
 from modules.resolvers.refresh_access_token import resolve_access_token,resolve_refresh_token
 from modules.resolvers.wine_test import resolve_wine_quality
 from modules.resolvers.fileDownload import resolve_file_download
+from modules.resolvers.registerFacebook import resolve_facebook
+
 
 #Query 
 query = QueryType()
@@ -23,3 +25,4 @@ mutation.set_field("create_user",resolve_create_user)
 mutation.set_field("login_user",resolve_login_user)
 mutation.set_field("upload_image",resolve_upload_image)
 mutation.set_field("predict_quality",resolve_wine_quality)
+mutation.set_field("facebook_login",resolve_facebook)
