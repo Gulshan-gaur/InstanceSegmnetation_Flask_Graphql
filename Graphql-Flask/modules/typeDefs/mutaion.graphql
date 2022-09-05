@@ -1,8 +1,0 @@
-type Mutation {
-        create_user(firstname: String!, email:String!, password: String!,age: Int!): AuthField!
-        login_user(email:String!,password:String!):AuthField!
-        upload_image(image: Upload!): Image!
-        predict_quality(valInput:WineQuality!):Predict!
-        facebook_login(input:AuthInput!): Facebook!
-}
-
